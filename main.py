@@ -4,7 +4,7 @@ from game import Game
 
 pygame.init()
 
-size = width, height = 600, 500
+size = width, height = 480, 400
 pygame.display.set_caption("A link's Sokoban")
 screen = pygame.display.set_mode(size)
 
