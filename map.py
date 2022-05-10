@@ -1,4 +1,4 @@
-import pygame
+import sys, pygame
 
 class Map:
 
@@ -16,16 +16,16 @@ class Map:
 
     def generateMap(self):
         return [
-            [0,1,2,3,4,5,6,7,0,0,0,0],
-            [1,0,0,0,0,0,0,0,1,2,3,4],
-            [1,0,0,0,0,0,0,0,0,0,0,0],
-            [1,0,0,0,0,0,0,0,0,0,0,0],
-            [1,0,0,0,0,0,5,0,0,0,0,0],
-            [1,0,0,0,0,0,0,0,4,0,0,0],
-            [1,0,0,0,0,0,0,0,0,0,0,0],
-            [1,0,0,0,0,0,0,0,0,0,5,0],
-            [1,0,0,0,0,0,0,0,0,0,0,0],
-            [1,0,0,0,0,0,0,0,0,0,0,0],
+            [1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,0,0,0,0,0,0,0,0,1],
+            [6,6,1,0,0,0,0,0,0,0,0,1],
+            [6,6,1,0,0,0,3,0,0,0,0,1],
+            [1,1,1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1],
         ]
 
     def loopMap(self,screen:pygame.Surface):
@@ -40,28 +40,49 @@ class Map:
         rupee = pygame.transform.scale(self.rupee, (40, 40))
 
         i = 0
+       
+        for event in pygame.event.get():
 
-        while i < len(self.map):
-            # print(i,"index")
-            a = 0
-            while a < len(self.map[i]):
-                if self.map[i][a] == 0:
-                    screen.blit(grass, (grass.get_width() * a, grass.get_height() * i))
-                elif self.map[i][a] == 1:
-                    screen.blit(rock, (rock.get_width() * a, rock.get_height() * i))
-                elif self.map[i][a] == 2:
-                    screen.blit(chicken, (chicken.get_width() * a, chicken.get_height() * i))
-                elif self.map[i][a] == 3:
-                    screen.blit(link_walking, (link_walking.get_width() * a, link_walking.get_height() * i))
-                elif self.map[i][a] == 4:
-                    screen.blit(tree, (tree.get_width() * a, tree.get_height() * i))
-                elif self.map[i][a] == 5:
-                    screen.blit(mushroom, (mushroom.get_width() * a, mushroom.get_height() * i))
-                elif self.map[i][a] == 6:
-                    screen.blit(water, (water.get_width() * a, water.get_height() * i))
-                elif self.map[i][a] == 7:
-                    screen.blit(rupee, (rupee.get_width() * a, rupee.get_height() * i))
-                a += 1
-            i += 1
+            if event.type == pygame.QUIT: 
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                
+                self.map[5+1][6] = 3
+                self.map[5][6] = 0
+
+            while i < len(self.map):
+
+                # print(i,"index")
+                a = 0
+                while a < len(self.map[i]):
+                    if self.map[i][a] == 0:
+                        screen.blit(grass, (grass.get_width() * a, grass.get_height() * i))
+                    elif self.map[i][a] == 1:
+                        screen.blit(rock, (rock.get_width() * a, rock.get_height() * i))
+                    elif self.map[i][a] == 2:
+                        screen.blit(chicken, (chicken.get_width() * a, chicken.get_height() * i))
+                    elif self.map[i][a] == 3:
+                        screen.blit(link_walking, (link_walking.get_width() * a, link_walking.get_height() * i))
+                    elif self.map[i][a] == 4:
+                        screen.blit(tree, (tree.get_width() * a, tree.get_height() * i))
+                    elif self.map[i][a] == 5:
+                        screen.blit(mushroom, (mushroom.get_width() * a, mushroom.get_height() * i))
+                    elif self.map[i][a] == 6:
+                        screen.blit(water, (water.get_width() * a, water.get_height() * i))
+                    elif self.map[i][a] == 7:
+                        screen.blit(rupee, (rupee.get_width() * a, rupee.get_height() * i))
+                    a += 1
+                i += 1
+            i = 0
+            
+
+
+            
+
+        
+       
+
+
         
     
