@@ -4,7 +4,7 @@ from game import Game
 
 pygame.init()
 
-size = width, height = 480, 400
+size = width, height = 640, 480
 pygame.display.set_caption("A Link's Sokoban")
 screen = pygame.display.set_mode(size)
 
@@ -23,12 +23,6 @@ while 1:
     #mettre a jour mon ecran 
     pygame.display.flip()
 
-    # for event in pygame.event.get():
-    
-    #     if event.type == pygame.QUIT: 
-    #         sys.exit()
 
-    #     elif event.type == pygame.KEYDOWN:
-    #         print('tata')
 
   

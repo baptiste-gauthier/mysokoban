@@ -16,16 +16,18 @@ class Map:
 
     def generateMap(self):
         return [
-            [1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,0,0,2,0,0,0,2,0,0,1],
-            [1,1,1,0,0,0,0,0,0,0,0,1],
-            [6,6,1,0,0,0,0,0,0,0,0,1],
-            [6,6,1,0,0,0,0,0,0,0,0,1],
-            [1,1,1,0,0,0,3,0,0,0,0,1],
-            [1,0,0,2,0,0,0,0,0,0,0,1],
-            [1,0,0,0,0,0,0,0,0,0,0,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], #12x16
+            [1,0,0,0,0,0,0,0,0,0,0,1,6,6,6,1],
+            [1,0,0,0,2,0,0,0,2,0,0,1,6,6,6,1],
+            [1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1],
+            [6,6,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [6,6,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,0,0,0,3,0,0,0,0,0,2,0,0,1],
+            [1,0,0,2,0,0,0,0,0,0,0,0,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,1,5,5,1],
+            [1,0,0,0,0,0,0,0,0,2,0,0,1,5,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,1,5,5,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         ]
 
 
@@ -78,23 +80,29 @@ class Map:
 
             if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
-                        if self.map[index_character_y-1][index_character_x] == 1:
+                        if self.map[index_character_y-1][index_character_x] == 1: #collision rock 
                             self.map[index_character_y][index_character_x] = 3
-                        elif self.map[index_character_y-1][index_character_x] == 2:
-                            self.map[index_character_y-1][index_character_x] = 3
-                            self.map[index_character_y-2][index_character_x] = 2
-                            self.map[index_character_y][index_character_x] = 0
+                        elif self.map[index_character_y-1][index_character_x] == 2: #collision poule 
+                            if self.map[index_character_y-2][index_character_x] == 1 or self.map[index_character_y-2][index_character_x] == 2:
+                                pass
+                            else:
+                                self.map[index_character_y-1][index_character_x] = 3
+                                self.map[index_character_y-2][index_character_x] = 2
+                                self.map[index_character_y][index_character_x] = 0
                         else:
-                            self.map[index_character_y-1][index_character_x] = 3
+                            self.map[index_character_y-1][index_character_x] = 3 #deplacement perso 
                             self.map[index_character_y][index_character_x] = 0
 
                     if event.key == pygame.K_DOWN:
                         if self.map[index_character_y+1][index_character_x] == 1:
                             self.map[index_character_y][index_character_x] = 3
                         elif self.map[index_character_y+1][index_character_x] == 2:
-                            self.map[index_character_y+1][index_character_x] = 3
-                            self.map[index_character_y+2][index_character_x] = 2
-                            self.map[index_character_y][index_character_x] = 0
+                            if self.map[index_character_y+2][index_character_x] == 1 or self.map[index_character_y+2][index_character_x] == 2:
+                                pass
+                            else:
+                                self.map[index_character_y+1][index_character_x] = 3
+                                self.map[index_character_y+2][index_character_x] = 2
+                                self.map[index_character_y][index_character_x] = 0
                         else:    
                             self.map[index_character_y+1][index_character_x] = 3
                             self.map[index_character_y][index_character_x] = 0
@@ -103,9 +111,12 @@ class Map:
                         if self.map[index_character_y][index_character_x+1] == 1:
                             self.map[index_character_y][index_character_x] = 3
                         elif self.map[index_character_y][index_character_x+1] == 2:
-                            self.map[index_character_y][index_character_x+1] = 3
-                            self.map[index_character_y][index_character_x+2] = 2
-                            self.map[index_character_y][index_character_x] = 0
+                            if self.map[index_character_y][index_character_x + 2] == 1 or self.map[index_character_y][index_character_x+2] == 2:
+                                pass
+                            else:
+                                self.map[index_character_y][index_character_x+1] = 3
+                                self.map[index_character_y][index_character_x+2] = 2
+                                self.map[index_character_y][index_character_x] = 0
                         else:
                             self.map[index_character_y][index_character_x + 1] = 3
                             self.map[index_character_y][index_character_x] = 0
@@ -114,13 +125,15 @@ class Map:
                         if self.map[index_character_y][index_character_x-1] == 1:
                             self.map[index_character_y][index_character_x] = 3
                         elif self.map[index_character_y][index_character_x-1] == 2:
-                            self.map[index_character_y][index_character_x-1] = 3
-                            self.map[index_character_y][index_character_x-2] = 2
-                            self.map[index_character_y][index_character_x] = 0
+                            if self.map[index_character_y][index_character_x-2] == 1 or self.map[index_character_y][index_character_x-2] == 2:
+                                pass
+                            else :
+                                self.map[index_character_y][index_character_x-1] = 3
+                                self.map[index_character_y][index_character_x-2] = 2
+                                self.map[index_character_y][index_character_x] = 0                                                                                                                                                                                                                      
                         else:
                             self.map[index_character_y][index_character_x - 1] = 3
                             self.map[index_character_y][index_character_x] = 0
-
 
 
             
