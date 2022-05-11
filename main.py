@@ -4,9 +4,9 @@ from game import Game
 
 
 pygame.init()
-# pygame.mixer.init()
-# pygame.mixer.music.load("gerudo_valley.mp3")
-# pygame.mixer.music.play()
+pygame.mixer.init()
+pygame.mixer.music.load("gerudo_valley.mp3")
+pygame.mixer.music.play(-1)
 
 
 
@@ -21,13 +21,10 @@ myMap = game.map.generateMap()
 
 while 1:
 
-    #injection de l'image du personnage 
-    # screen.blit(game.player.image, game.player.rect)
-
     game.map.loopMap(screen)
-    
     #mettre a jour mon ecran 
     pygame.display.flip()
+
 
 
 

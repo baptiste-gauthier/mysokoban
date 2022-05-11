@@ -1,4 +1,6 @@
 import sys, pygame
+from tkinter.tix import DisplayStyle
+
 
 class Map:
 
@@ -11,6 +13,9 @@ class Map:
         self.mushroom = pygame.image.load("assets/mushroom.png")
         self.water = pygame.image.load("assets/water.png")
         self.rupee = pygame.image.load("assets/rupee.png")
+        self.img_victory = pygame.image.load("assets/victory.png").convert_alpha()
+        self.background = pygame.image.load("assets/bg-back.png")
+        self.victory = False
         self.map = self.generateMap()
 
 
@@ -44,9 +49,10 @@ class Map:
 
         i = 0
        
-        
-
+          
+            
         while i < len(self.map):
+
 
             # print(i,"index")
             a = 0
@@ -72,10 +78,14 @@ class Map:
                 a += 1
             i += 1
         i = 0
-
+        
+        
+        
         if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
-            print('victoire !!')
-
+            # self.img_victory.fill((255, 255, 255, 0), special_flags=pygame.BLEND_RGBA_ADD)
+            screen.blit(self.img_victory, (0, 0))
+            
+        #permet de laisser les rubis en place 
         if self.map[3][4] == 0:
             self.map[3][4] = 7
         if self.map[5][11] == 0:
@@ -94,6 +104,9 @@ class Map:
 
             if event.type == pygame.QUIT: 
                 sys.exit()
+
+          
+               
 
             if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
@@ -151,6 +164,14 @@ class Map:
                         else:
                             self.map[index_character_y][index_character_x - 1] = 3
                             self.map[index_character_y][index_character_x] = 0
+
+                    if event.key == pygame.K_r:
+                        self.map = self.generateMap()
+                        screen.blit(self.background, (0, 0))
+            
+
+
+             
 
 
             
