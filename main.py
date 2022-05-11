@@ -3,6 +3,11 @@ import random
 from game import Game
 
 pygame.init()
+# pygame.mixer.init()
+pygame.mixer.music.load("gerudo_valley.mp3")
+pygame.mixer.music.play()
+
+
 
 size = width, height = 640, 480
 pygame.display.set_caption("A Link's Sokoban")

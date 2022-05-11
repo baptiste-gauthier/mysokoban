@@ -19,14 +19,14 @@ class Map:
             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], #12x16
             [1,0,0,0,0,0,0,0,0,0,0,1,6,6,6,1],
             [1,0,0,0,2,0,0,0,2,0,0,1,6,6,6,1],
-            [1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1],
+            [1,1,1,0,7,0,0,0,0,0,0,1,1,1,1,1],
             [6,6,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [6,6,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,1,1,0,0,0,3,0,0,0,0,0,2,0,0,1],
+            [6,6,1,0,0,0,0,0,0,0,0,7,0,0,0,1],
+            [1,1,1,0,0,0,3,0,0,0,0,0,0,0,0,1],
             [1,0,0,2,0,0,0,0,0,0,0,0,1,1,1,1],
             [1,0,0,0,0,0,0,0,0,0,0,0,1,5,5,1],
-            [1,0,0,0,0,0,0,0,0,2,0,0,1,5,5,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,1,5,5,1],
+            [1,0,7,0,0,0,0,0,0,2,0,0,1,5,5,1],
+            [1,0,0,0,0,0,7,0,0,0,0,0,1,5,5,1],
             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
         ]
 
@@ -73,6 +73,11 @@ class Map:
             i += 1
         i = 0
 
+        if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
+            print('victoire !!')
+
+
+
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT: 
@@ -90,7 +95,7 @@ class Map:
                                 self.map[index_character_y-2][index_character_x] = 2
                                 self.map[index_character_y][index_character_x] = 0
                         else:
-                            self.map[index_character_y-1][index_character_x] = 3 #deplacement perso 
+                            self.map[index_character_y-1][index_character_x] = 3
                             self.map[index_character_y][index_character_x] = 0
 
                     if event.key == pygame.K_DOWN:
