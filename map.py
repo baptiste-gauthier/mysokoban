@@ -76,6 +76,18 @@ class Map:
         if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
             print('victoire !!')
 
+        if self.map[3][4] == 0:
+            self.map[3][4] = 7
+        if self.map[5][11] == 0:
+            self.map[5][11] = 7
+        if self.map[9][2] == 0:
+            self.map[9][2] = 7
+        if self.map[10][6] == 0:
+            self.map[10][6] = 7
+
+
+
+
 
 
         for event in pygame.event.get():

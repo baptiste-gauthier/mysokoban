@@ -2,10 +2,11 @@ import sys, pygame
 import random
 from game import Game
 
+
 pygame.init()
 # pygame.mixer.init()
-pygame.mixer.music.load("gerudo_valley.mp3")
-pygame.mixer.music.play()
+# pygame.mixer.music.load("gerudo_valley.mp3")
+# pygame.mixer.music.play()
 
 
 
