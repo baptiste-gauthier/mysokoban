@@ -82,9 +82,11 @@ class Map:
         
         
         if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
-            # self.img_victory.fill((255, 255, 255, 0), special_flags=pygame.BLEND_RGBA_ADD)
             screen.blit(self.img_victory, (0, 0))
-            
+            self.victory = True
+        else:
+            self.victory = False
+
         #permet de laisser les rubis en place 
         if self.map[3][4] == 0:
             self.map[3][4] = 7
@@ -109,65 +111,78 @@ class Map:
                
 
             if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
-                        if self.map[index_character_y-1][index_character_x] == 1: #collision rock 
-                            self.map[index_character_y][index_character_x] = 3
-                        elif self.map[index_character_y-1][index_character_x] == 2: #collision poule 
-                            if self.map[index_character_y-2][index_character_x] == 1 or self.map[index_character_y-2][index_character_x] == 2:
-                                pass
+                    if self.victory == False:
+
+                        if event.key == pygame.K_UP:
+                            if self.map[index_character_y-1][index_character_x] == 1: #collision rock 
+                                self.map[index_character_y][index_character_x] = 3
+                            elif self.map[index_character_y-1][index_character_x] == 2: #collision poule 
+                                if self.map[index_character_y-2][index_character_x] == 1 or self.map[index_character_y-2][index_character_x] == 2:
+                                    pass
+                                else:
+                                    self.map[index_character_y-1][index_character_x] = 3
+                                    self.map[index_character_y-2][index_character_x] = 2
+                                    self.map[index_character_y][index_character_x] = 0
                             else:
                                 self.map[index_character_y-1][index_character_x] = 3
-                                self.map[index_character_y-2][index_character_x] = 2
                                 self.map[index_character_y][index_character_x] = 0
-                        else:
-                            self.map[index_character_y-1][index_character_x] = 3
-                            self.map[index_character_y][index_character_x] = 0
 
-                    if event.key == pygame.K_DOWN:
-                        if self.map[index_character_y+1][index_character_x] == 1:
-                            self.map[index_character_y][index_character_x] = 3
-                        elif self.map[index_character_y+1][index_character_x] == 2:
-                            if self.map[index_character_y+2][index_character_x] == 1 or self.map[index_character_y+2][index_character_x] == 2:
-                                pass
-                            else:
+                        if event.key == pygame.K_DOWN:
+                            if self.map[index_character_y+1][index_character_x] == 1:
+                                self.map[index_character_y][index_character_x] = 3
+                            elif self.map[index_character_y+1][index_character_x] == 2:
+                                if self.map[index_character_y+2][index_character_x] == 1 or self.map[index_character_y+2][index_character_x] == 2:
+                                    pass
+                                else:
+                                    self.map[index_character_y+1][index_character_x] = 3
+                                    self.map[index_character_y+2][index_character_x] = 2
+                                    self.map[index_character_y][index_character_x] = 0
+                            else:    
                                 self.map[index_character_y+1][index_character_x] = 3
-                                self.map[index_character_y+2][index_character_x] = 2
                                 self.map[index_character_y][index_character_x] = 0
-                        else:    
-                            self.map[index_character_y+1][index_character_x] = 3
-                            self.map[index_character_y][index_character_x] = 0
 
-                    if event.key == pygame.K_RIGHT:
-                        if self.map[index_character_y][index_character_x+1] == 1:
-                            self.map[index_character_y][index_character_x] = 3
-                        elif self.map[index_character_y][index_character_x+1] == 2:
-                            if self.map[index_character_y][index_character_x + 2] == 1 or self.map[index_character_y][index_character_x+2] == 2:
-                                pass
+                        if event.key == pygame.K_RIGHT:
+                            if self.map[index_character_y][index_character_x+1] == 1:
+                                self.map[index_character_y][index_character_x] = 3
+                            elif self.map[index_character_y][index_character_x+1] == 2:
+                                if self.map[index_character_y][index_character_x + 2] == 1 or self.map[index_character_y][index_character_x+2] == 2:
+                                    pass
+                                else:
+                                    self.map[index_character_y][index_character_x+1] = 3
+                                    self.map[index_character_y][index_character_x+2] = 2
+                                    self.map[index_character_y][index_character_x] = 0
                             else:
-                                self.map[index_character_y][index_character_x+1] = 3
-                                self.map[index_character_y][index_character_x+2] = 2
+                                self.map[index_character_y][index_character_x + 1] = 3
                                 self.map[index_character_y][index_character_x] = 0
-                        else:
-                            self.map[index_character_y][index_character_x + 1] = 3
-                            self.map[index_character_y][index_character_x] = 0
 
-                    if event.key == pygame.K_LEFT:
-                        if self.map[index_character_y][index_character_x-1] == 1:
-                            self.map[index_character_y][index_character_x] = 3
-                        elif self.map[index_character_y][index_character_x-1] == 2:
-                            if self.map[index_character_y][index_character_x-2] == 1 or self.map[index_character_y][index_character_x-2] == 2:
-                                pass
-                            else :
-                                self.map[index_character_y][index_character_x-1] = 3
-                                self.map[index_character_y][index_character_x-2] = 2
-                                self.map[index_character_y][index_character_x] = 0                                                                                                                                                                                                                      
-                        else:
-                            self.map[index_character_y][index_character_x - 1] = 3
-                            self.map[index_character_y][index_character_x] = 0
+                        if event.key == pygame.K_LEFT:
+                            if self.map[index_character_y][index_character_x-1] == 1:
+                                self.map[index_character_y][index_character_x] = 3
+                            elif self.map[index_character_y][index_character_x-1] == 2:
+                                if self.map[index_character_y][index_character_x-2] == 1 or self.map[index_character_y][index_character_x-2] == 2:
+                                    pass
+                                else :
+                                    self.map[index_character_y][index_character_x-1] = 3
+                                    self.map[index_character_y][index_character_x-2] = 2
+                                    self.map[index_character_y][index_character_x] = 0                                                                                                                                                                                                                      
+                            else:
+                                self.map[index_character_y][index_character_x - 1] = 3
+                                self.map[index_character_y][index_character_x] = 0
 
                     if event.key == pygame.K_r:
                         self.map = self.generateMap()
                         screen.blit(self.background, (0, 0))
+                    
+                    # if event.key == pygame.K_UP and self.victory:
+                    #     self.map[index_character_y][index_character_x] = 3
+                    # if event.key == pygame.K_DOWN and self.victory:
+                    #     self.map[index_character_y][index_character_x] = 3
+                    # if event.key == pygame.K_LEFT and self.victory:
+                    #     self.map[index_character_y][index_character_x] = 3
+                    # if event.key == pygame.K_RIGHT and self.victory:
+                    #     self.map[index_character_y][index_character_x] = 3
+
+                    
             
 
 
