@@ -1,5 +1,7 @@
 import sys, pygame
-from tkinter.tix import DisplayStyle
+
+from database import Database
+# from tkinter.tix import DisplayStyle
 
 
 class Map:
@@ -17,6 +19,7 @@ class Map:
         self.background = pygame.image.load("assets/bg-back.png")
         self.victory = False
         self.map = self.generateMap()
+        self.databse = Database()
 
 
     def generateMap(self):
@@ -36,7 +39,7 @@ class Map:
         ]
 
 
-    def loopMap(self,screen:pygame.Surface):
+    def loopMap(self,screen:pygame.Surface, seconds):
 
         grass = pygame.transform.scale(self.grass, (40, 40))
         rock = pygame.transform.scale(self.rock, (40, 40))
@@ -83,7 +86,10 @@ class Map:
         
         if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
             screen.blit(self.img_victory, (0, 0))
+            print(seconds)
             self.victory = True
+           
+            # self.databse.insertScoreDatabase('tata' , seconds)
         else:
             self.victory = False
 
@@ -161,7 +167,7 @@ class Map:
                             elif self.map[index_character_y][index_character_x-1] == 2:
                                 if self.map[index_character_y][index_character_x-2] == 1 or self.map[index_character_y][index_character_x-2] == 2:
                                     pass
-                                else :
+                                else:
                                     self.map[index_character_y][index_character_x-1] = 3
                                     self.map[index_character_y][index_character_x-2] = 2
                                     self.map[index_character_y][index_character_x] = 0                                                                                                                                                                                                                      
@@ -172,15 +178,6 @@ class Map:
                     if event.key == pygame.K_r:
                         self.map = self.generateMap()
                         screen.blit(self.background, (0, 0))
-                    
-                    # if event.key == pygame.K_UP and self.victory:
-                    #     self.map[index_character_y][index_character_x] = 3
-                    # if event.key == pygame.K_DOWN and self.victory:
-                    #     self.map[index_character_y][index_character_x] = 3
-                    # if event.key == pygame.K_LEFT and self.victory:
-                    #     self.map[index_character_y][index_character_x] = 3
-                    # if event.key == pygame.K_RIGHT and self.victory:
-                    #     self.map[index_character_y][index_character_x] = 3
 
                     
             

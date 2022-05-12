@@ -1,6 +1,8 @@
 import sys, pygame
 import random
+from database import Database
 from game import Game
+import mysql.connector
 
 
 pygame.init()
@@ -18,12 +20,19 @@ screen = pygame.display.set_mode(size)
 game = Game()
 myMap = game.map.generateMap()
 
+database = Database()
+database.insertScoreDatabase("test" , 15.6)
+start_ticks = pygame.time.get_ticks()
+
 
 while 1:
-
-    game.map.loopMap(screen)
+    seconds=(pygame.time.get_ticks()-start_ticks)/1000 #calculate how many seconds
+    game.map.loopMap(screen , seconds)
+    
     #mettre a jour mon ecran 
     pygame.display.flip()
+
+
 
 
 
