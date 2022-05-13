@@ -26,15 +26,10 @@ start_ticks = pygame.time.get_ticks()
 
 
 while 1:
-    seconds=(pygame.time.get_ticks()-start_ticks)/1000 #calculate how many seconds
-    game.map.loopMap(screen , seconds)
+    game.map.loopMap(screen , start_ticks)
+    
     
     #mettre a jour mon ecran 
     pygame.display.flip()
 
 
-
-
-
-
-  

@@ -39,7 +39,7 @@ class Map:
         ]
 
 
-    def loopMap(self,screen:pygame.Surface, seconds):
+    def loopMap(self,screen:pygame.Surface, start_ticks):
 
         grass = pygame.transform.scale(self.grass, (40, 40))
         rock = pygame.transform.scale(self.rock, (40, 40))
@@ -51,12 +51,9 @@ class Map:
         rupee = pygame.transform.scale(self.rupee, (40, 40))
 
         i = 0
-       
-          
-            
+
         while i < len(self.map):
-
-
+            
             # print(i,"index")
             a = 0
             while a < len(self.map[i]):
@@ -84,15 +81,16 @@ class Map:
         
         
         
+        
         if self.map[3][4] == 2 and self.map[5][11] == 2 and self.map[9][2] == 2 and self.map[10][6] == 2:
             screen.blit(self.img_victory, (0, 0))
-            print(seconds)
             self.victory = True
-           
-            # self.databse.insertScoreDatabase('tata' , seconds)
         else:
             self.victory = False
+            global seconds 
+            seconds = (pygame.time.get_ticks()-start_ticks)/1000
 
+        print("seconds", seconds)
         #permet de laisser les rubis en place 
         if self.map[3][4] == 0:
             self.map[3][4] = 7
@@ -178,19 +176,4 @@ class Map:
                     if event.key == pygame.K_r:
                         self.map = self.generateMap()
                         screen.blit(self.background, (0, 0))
-
-                    
-            
-
-
-             
-
-
-            
-
-        
-       
-
-
-        
-    
+                        
